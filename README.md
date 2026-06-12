@@ -1,4 +1,4 @@
-# cortensor-rewards
+# QVAC Contribution Layer
 
 A contribution and rewards layer for apps that already use decentralized inference.
 
@@ -20,7 +20,7 @@ A decentralized inference app adds an embedded widget, users opt into approved b
 - Contributor identity and consent management.
 - Contribution session lifecycle and status tracking.
 - Usage-linked attribution and reward accrual.
-- USDC settlement to contributor and publisher wallets.
+- On-chain settlement to contributor and publisher wallets.
 
 ## Use cases this does not cover
 
@@ -28,7 +28,7 @@ A decentralized inference app adds an embedded widget, users opt into approved b
 - Manual inference scheduling or job marketplaces.
 - Model routing, translation, or inference replacement flows.
 
-## Repo
+## Name
 
-Name: `cortensor-rewards`
-Description: Contribution and rewards layer for decentralized inference apps.
+Backend service: `cortensor-rewards`  
+Public product: QVAC Contribution Layer / Rooted
