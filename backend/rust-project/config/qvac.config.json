@@ -1,0 +1,112 @@
+{
+  "metadata": {
+    "version": "0.1.0",
+    "schemaVersion": 1,
+    "description": "QVAC Provider Daemon Configuration"
+  },
+  "provider": {
+    "name": "My GPU Node",
+    "taskTypes": 7,
+    "region": "us-east-1",
+    "verificationTier": 0,
+    "teeEndpoint": null,
+    "authority": "0x742d35Cc6634C0532925a3b8D4C6357e868C4F9e",
+    "rpcUrl": "https://eth-mainnet.g.alchemy.com/v2/YOUR_API_KEY",
+    "chainId": "1",
+    "maxConcurrentSessions": 4,
+    "seedEnv": "QVAC_HYPERSWARM_SEED",
+    "seedFile": null,
+    "probeIntervalSecs": 3600,
+    "announceIntervalMs": 30000
+  },
+  "pricing": {
+    "baseModelId": "QWEN3_8B_INST_Q4_K_M",
+    "basePricePerRequest": "1000000",
+    "tiers": {
+      "QWEN3_600M": { "multiplier": 0.1, "minTPS": 50, "maxContextTokens": 32768 },
+      "QWEN3_1_7B": { "multiplier": 0.25, "minTPS": 30, "maxContextTokens": 32768 },
+      "QWEN3_4B": { "multiplier": 0.5, "minTPS": 20, "maxContextTokens": 32768 },
+      "QWEN3_8B_INST_Q4_K_M": { "multiplier": 1.0, "minTPS": 15, "maxContextTokens": 32768 },
+      "LLAMA3_8B_INST_Q4": { "multiplier": 1.2, "minTPS": 12, "maxContextTokens": 8192 }
+    },
+    "token": {
+      "address": "0x0",
+      "decimals": 18,
+      "protocolFeeBps": 100
+    }
+  },
+  "matching": {
+    "endpoint": "wss://matching.compute-market.example.com",
+    "apiKey": null,
+    "reconnectIntervalSecs": 5,
+    "orderTimeoutSecs": 30,
+    "mirrorOnchain": false
+  },
+  "p2p": {
+    "seedEnv": "QVAC_HYPERSWARM_SEED",
+    "marketTopic": "compute:market:v1",
+    "announceIntervalMs": 30000,
+    "maxPeers": 100,
+    "enableRelay": true,
+    "bootstrap": [
+      "bootstrap1.hyperswarm.org:443",
+      "bootstrap2.hyperswarm.org:443"
+    ],
+    "mux": true
+  },
+  "tee": {
+    "teeType": null,
+    "endpoint": null,
+    "policy": null,
+    "collateralUpdateIntervalSecs": 86400
+  },
+  "workload": {
+    "backend": "firecracker",
+    "firecrackerSocket": "/tmp/firecracker.socket",
+    "runscPath": "/usr/bin/runsc",
+    "defaultLimits": {
+      "vcpus": 4,
+      "memoryMb": 8192,
+      "gpus": "0",
+      "diskMb": 10240,
+      "networkMbps": null
+    },
+    "modelCacheDir": "/var/lib/qvac/models",
+    "modelLoadTimeoutSecs": 300,
+    "prewarm": []
+  },
+  "attestation": {
+    "enabled": true,
+    "endpoint": null,
+    "streamIntervalMs": 1000,
+    "batchSize": 10,
+    "includeCpuCycles": true,
+    "includeMemory": true,
+    "includeOutputHash": true
+  },
+  "settlement": {
+    "mode": "per_inference",
+    "autoClaim": true,
+    "claimIntervalSecs": 60,
+    "minClaimAmount": "1000",
+    "gasStrategy": "auto",
+    "maxGasPrice": null
+  },
+  "metrics": {
+    "enabled": true,
+    "listenAddr": "0.0.0.0:9090",
+    "path": "/metrics",
+    "pushGateway": null,
+    "pushIntervalSecs": 30
+  },
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "file": "/var/log/qvac-provider.log",
+    "rotation": {
+      "maxSizeMb": 100,
+      "maxFiles": 10,
+      "compress": true
+    }
+  }
+}

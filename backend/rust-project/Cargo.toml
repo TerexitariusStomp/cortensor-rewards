@@ -1,0 +1,106 @@
+[package]
+name = "qvac-provider"
+version = "0.1.0"
+edition = "2021"
+description = "QVAC Compute Provider Daemon - Decentralized compute marketplace provider integration"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/terexitarius/qvac-provider"
+authors = ["Temple Earth <dev@templeearth.cc>"]
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.40", features = ["full", "tracing"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Configuration
+serde = { version = "=1.0.214", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+config = "0.14"
+figment = { version = "0.10", features = ["toml", "yaml", "env"] }
+
+# CLI
+clap = { version = "4.5", features = ["derive", "env"] }
+
+# Cryptography
+ed25519-dalek = "2.1"
+sha2 = "0.10"
+hex = "0.4"
+rand = { version = "0.8", features = ["std_rng", "serde"] }
+uuid = { version = "1.8", features = ["v7", "serde", "fast-rng"] }
+openssl-sys = { version = "0.9", features = ["vendored"] }
+
+# Ethereum/Solana interaction
+alloy = { version = "0.12", features = ["full", "serde", "reqwest", "signer-local"] }
+# ethers = { version = "2.0", features = ["providers", "signers", "contracts", "tokio"] }
+# Solana - commented out due to dependency conflicts, enable when needed
+# solana-sdk = "2.1"
+# solana-client = "2.1"
+# anchor-lang = "0.30"
+# anchor-client = "0.30"
+
+# P2P / Hyperswarm (using Rust implementations) - commented out for now
+# hyperswarm = { git = "https://github.com/holepunchto/hyperswarm-rs", branch = "main" }
+# hyperdht = { git = "https://github.com/holepunchto/hyperdht-rs", branch = "main" }
+# noise = { git = "https://github.com/holepunchto/noise-rs", branch = "main" }
+
+# HTTP/WebSocket
+reqwest = { version = "0.12", features = ["json", "rustls-tls", "stream"] }
+axum = { version = "0.7", features = ["ws", "json", "tokio"] }
+tower = "0.4"
+tower-http = { version = "0.6", features = ["cors", "trace"] }
+
+# GPU detection and benchmarking
+nvml-wrapper = "0.7"
+sysinfo = "0.30"
+# gpu-detect = "0.3"  # not on crates.io
+# Container isolation (Firecracker/gVisor)
+# tokio-process = { version = "0.3.0-alpha.2" }  # conflicts with alloy
+async-process = "1.5"
+
+# TEE Attestation - commented out for now
+# tdx-attestation = { git = "https://github.com/intel/tdx-attestation-rs", branch = "main", optional = true }
+# sev-snp-attestation = { git = "https://github.com/AMD/sev-snp-attestation-rs", branch = "main", optional = true }
+
+# Metrics and health
+prometheus = "0.13"
+metrics = "0.21"
+metrics-exporter-prometheus = "0.12"
+
+# Utilities
+anyhow = "1.0"
+thiserror = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+ulid = "1.0"
+semver = "1.0"
+dirs-next = "2.0"
+signal-hook = { version = "0.3", features = ["default"] }
+toml = "0.8"
+peeroxide = "1.3.1"
+
+[dev-dependencies]
+tokio-test = "0.4"
+mockall = "0.13"
+proptest = "1.4"
+wiremock = "0.6"
+
+[features]
+default = []
+# tee-tdx = ["tdx-attestation"]
+# tee-sev = ["sev-snp-attestation"]
+# tee = ["tee-tdx", "tee-sev"]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[profile.dev]
+opt-level = 0
+debug = true
+
+[build-dependencies]
+vergen = { version = "8.0", features = ["cargo", "git", "rustc", "sysinfo"] }

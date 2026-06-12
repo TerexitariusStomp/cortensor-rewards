@@ -1,0 +1,20 @@
+// Export zap-payment module
+export {
+  ZapPayment,
+  createZapPayment,
+  createZapRequestEvent,
+  parseZapReceiptEvent,
+  publishToRelays,
+  subscribeToZapReceipts,
+  getNip07Signer,
+  getUserPubkey,
+  satsToMillisats,
+  millisatsToSats,
+  formatAmount,
+  fetchUserProfile,
+  extractLightningAddress,
+  fetchLightningAddress,
+  ZAP_REQUEST_KIND,
+  ZAP_RECEIPT_KIND,
+  DEFAULT_ZAP_RELAYS,
+} from './zap-payment.js';
