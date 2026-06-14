@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  qvac-pear-miner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: qvac-pear-miner-node
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/app/data
+      - ./config.json:/app/config.json:ro
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - qvac-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/status', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  qvac-network:
+    driver: bridge
+
+volumes:
+  data:
+    driver: local

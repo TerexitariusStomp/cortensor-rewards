@@ -1,0 +1,9 @@
+node_modules/
+data/
+*.log
+.env
+.DS_Store
+dist/
+build/
+*.key
+*.pem
