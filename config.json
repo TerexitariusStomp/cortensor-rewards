@@ -1,0 +1,102 @@
+{
+  "node": {
+    "id": "02b8357bdd44fbb6bd12f2b07cc993ee",
+    "name": "QVAC-Pear Miner Node",
+    "version": "1.0.0"
+  },
+  "inference": {
+    "enabled": true,
+    "qvac": {
+      "endpoint": "local",
+      "models": [
+        "llama-2-7b",
+        "llama-2-13b"
+      ],
+      "maxConcurrent": 4
+    },
+    "idleTimeout": 300000
+  },
+  "miners": {
+    "enabled": true,
+    "parallelMode": true,
+    "priority": [
+      "cortensor",
+      "chutes",
+      "fortytwo",
+      "earnidle",
+      "routstr"
+    ],
+    "switchInterval": 60000,
+    "cortensor": {
+      "enabled": true,
+      "config": {
+        "walletAddress": "0xa2bCA2e01Fc1631e5577994404C4e3d742b284bf",
+        "network": "arbitrum-testnet",
+        "description": "Arbitrum testnet wallet address for Cortensor mining rewards"
+      }
+    },
+    "chutes": {
+      "enabled": true,
+      "config": {
+        "walletAddress": "5G8xKa8ks1FsGAvTmLdQwLZqmRaHutiF3BvHFcvKmwGDfHCF",
+        "network": "bittensor",
+        "description": "Bittensor wallet address for Chutes GPU compute mining rewards",
+        "requiresK8s": true,
+        "stackCompatible": false,
+        "compatibilityMode": true,
+        "note": "Chutes requires Kubernetes for GPU validation. Running in compatibility mode with QVAC/Hypercore/Pear stack. All inference routed through QVAC inference node."
+      }
+    },
+    "fortytwo": {
+      "enabled": true,
+      "config": {
+        "walletAddress": "0xa2bCA2e01Fc1631e5577994404C4e3d742b284bf",
+        "network": "evm",
+        "description": "EVM compatible wallet address for Fortytwo-Network mining rewards"
+      }
+    },
+    "earnidle": {
+      "enabled": true,
+      "config": {
+        "walletAddress": "6ovcKVxdNHH1LradUS8T5gmYiYUGQPW8xtPhfp9ZhPXw",
+        "network": "solana",
+        "description": "Solana wallet address for Earnidle mining rewards"
+      }
+    },
+    "routstr": {
+      "enabled": true,
+      "config": {
+        "walletAddress": "nsec1psf70kpc2xkuvylmq8827flhkukpxs893m92v7zfx938ch2qk9dsdr565z",
+        "network": "nostr",
+        "platform": "https://beta.platform.routstr.com/",
+        "walletType": "nip-60",
+        "description": "Nostr nsec address for Routstr AI inference routing rewards"
+      }
+    }
+  },
+  "scheduler": {
+    "enabled": true,
+    "nightStart": 20,
+    "nightEnd": 6,
+    "timezone": "UTC"
+  },
+  "p2p": {
+    "enabled": true,
+    "pear": {
+      "enabled": true,
+      "discovery": true
+    },
+    "hypercore": {
+      "storage": "./data/hypercore",
+      "replicate": true
+    }
+  },
+  "storage": {
+    "path": "./data",
+    "encryption": true
+  },
+  "auth": {
+    "method": "signin",
+    "required": true
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "qvac-pear-miner-node",
+  "version": "1.0.0",
+  "description": "Distributed node combining QVAC inference with multi-miner capabilities via Pear P2P",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "init": "node src/init.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test",
+    "build": "node scripts/build.js",
+    "install-web": "node scripts/install-web.js"
+  },
+  "keywords": [
+    "qvac",
+    "pear",
+    "hypercore",
+    "mining",
+    "p2p",
+    "ai",
+    "inference"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@hyperswarm/secret-stream": "^6.0.0",
+    "hypercore": "^10.0.0",
+    "hyperswarm": "^4.0.0",
+    "pear-runtime": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

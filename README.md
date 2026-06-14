@@ -1,34 +1,130 @@
-# QVAC Contribution Layer
+# QVAC-Pear Miner Node
 
-A contribution and rewards layer for apps that already use decentralized inference.
+A distributed node that combines QVAC inference with multiple mining capabilities, distributed via Pear P2P.
 
-## What this is
+## Quick Start with Docker
 
-This project adds an opt-in contribution and rewards surface on top of apps that already route or execute inference through decentralized networks. It does not replace Cortensor, Fortytwo, or any existing inference backend. Instead, it provides publisher verification, embed token issuance, contributor consent, session tracking, attribution, and payout control.
+The easiest way to run the QVAC-Pear Miner Node is using Docker:
 
-## What this is not
+```bash
+# Build the Docker image
+docker build -t qvac-pear-miner:latest .
 
-This is not a deployment platform, model router, inference scheduler, or replacement backend. It does not broker or reroute inference traffic. The responsibility for serving or coordinating inference remains with the existing decentralized inference systems.
+# Run the container
+docker run -d -p 3000:3000 -v $(pwd)/data:/app/data qvac-pear-miner:latest
 
-## How it fits
+# Or use Docker Compose
+docker-compose up -d
+```
 
-A decentralized inference app adds an embedded widget, users opt into approved browser-side contribution, sessions are metered and attributed, and rewards flow to both the participant and the publisher. This project provides the control plane for that flow.
+The node will be available at `http://localhost:3000`
 
-## Use cases
+### Docker Compose (Recommended)
 
-- Publisher registration and placement verification.
-- Contributor identity and consent management.
-- Contribution session lifecycle and status tracking.
-- Usage-linked attribution and reward accrual.
-- On-chain settlement to contributor and publisher wallets.
+```bash
+# Start all services
+docker-compose up -d
 
-## Use cases this does not cover
+# View logs
+docker-compose logs -f
 
-- Infrastructure deployment or app hosting.
-- Manual inference scheduling or job marketplaces.
-- Model routing, translation, or inference replacement flows.
+# Stop services
+docker-compose down
+```
 
-## Name
+## Architecture
 
-Backend service: `cortensor-rewards`  
-Public product: QVAC Contribution Layer / Rooted
+This node integrates:
+- **QVAC** - Base inference layer for AI applications
+- **Pear** - Peer-to-peer app distribution
+- **Hypercore** - Distributed data store
+- **Multi-Miner Support** - Cortensor, Chutes, Fortytwo-Network, Earnidle, Routstr
+- **Centralized Inference** - All miners route through single QVAC inference node
+
+## Features
+
+- **Dual Mode Operation**: Serves AI inference when active, switches to mining when idle
+- **P2P Distribution**: Apps distributed via Pear runtime without cloud infrastructure
+- **Zero-Auth Installation**: Simple sign-in with consent flow, no complex authentication
+- **Distributed Storage**: Hypercore for secure, distributed data storage
+- **Multi-Miner Support**: Automatically switches between 5 different mining protocols
+- **Centralized Inference**: All miners route through single QVAC inference node
+- **Container Ready**: Full Docker support for easy deployment
+
+## Installation
+
+### Docker Installation (Recommended)
+
+```bash
+# Clone the repository
+git clone https://github.com/your-org/qvac-pear-miner-node.git
+cd qvac-pear-miner-node
+
+# Build and run with Docker Compose
+docker-compose up -d
+
+# Or build manually
+docker build -t qvac-pear-miner:latest .
+docker run -d -p 3000:3000 -v $(pwd)/data:/app/data qvac-pear-miner:latest
+```
+
+### Manual Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Initialize the node
+npm run init
+
+# Start the node
+npm start
+```
+
+## Usage
+
+The node automatically:
+1. Connects to the P2P network via Pear
+2. Initializes QVAC inference layer
+3. Sets up Hypercore data store
+4. Monitors for inference requests
+5. Switches to mining when idle
+
+## Configuration
+
+Edit `config.json` to customize:
+- Miner priorities
+- Inference settings
+- P2P network settings
+- Data storage paths
+
+## Miner Integration
+
+### Cortensor
+Decentralized AI network miner for proof-of-useful-work tasks.
+
+### Chutes
+GPU mining system with automatic GPU validation.
+
+### Fortytwo-Network
+Decentralized AI inference node for planetary-scale intelligence.
+
+### Earnidle
+Protocol for putting idle compute resources to work across multiple venues.
+
+## Development
+
+```bash
+# Install development dependencies
+npm install --save-dev
+
+# Run tests
+npm test
+
+# Build for production
+npm run build
+```
+
+## License
+
+MIT

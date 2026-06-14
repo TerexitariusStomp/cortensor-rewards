@@ -1,8 +1,9 @@
-node_modules
-dist
-.wrangler
-.cache
+node_modules/
+data/
+*.log
 .env
-.env.*
-*.db
-*.pkl
+.DS_Store
+dist/
+build/
+*.key
+*.pem

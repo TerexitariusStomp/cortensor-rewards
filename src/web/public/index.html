@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QVAC-Pear Miner Node - Download</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>QVAC-Pear Miner Node</h1>
+            <p class="subtitle">Distributed AI Inference & Mining Node</p>
+        </header>
+
+        <div id="consent-section" class="section">
+            <h2>Consent & Agreement</h2>
+            <div class="consent-box">
+                <h3>What you're installing:</h3>
+                <ul>
+                    <li><strong>QVAC Inference Layer:</strong> Local AI inference capabilities</li>
+                    <li><strong>Pear P2P Network:</strong> Peer-to-peer app distribution</li>
+                    <li><strong>Hypercore Data Store:</strong> Distributed secure storage</li>
+                    <li><strong>Multi-Miner Support:</strong> Cortensor, Chutes, Fortytwo-Network, Earnidle</li>
+                </ul>
+
+                <h3>How it works:</h3>
+                <ul>
+                    <li>When your node is serving AI inference, it prioritizes those requests</li>
+                    <li>When idle, it automatically switches to mining across multiple networks</li>
+                    <li>All data is stored securely using Hypercore's distributed protocol</li>
+                    <li>The node connects to peers via Pear's P2P network</li>
+                </ul>
+
+                <h3>Privacy & Data:</h3>
+                <ul>
+                    <li>Your node ID is generated locally and never shared with third parties</li>
+                    <li>Inference requests are processed locally when possible</li>
+                    <li>Mining rewards are credited to your configured wallet</li>
+                    <li>You can uninstall at any time</li>
+                </ul>
+
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" id="consent-checkbox">
+                        I have read and agree to the terms above
+                    </label>
+                </div>
+
+                <button id="consent-btn" class="btn btn-primary" disabled>Continue</button>
+            </div>
+        </div>
+
+        <div id="signin-section" class="section hidden">
+            <h2>Sign In</h2>
+            <p class="info">Sign in to get started. No complex authentication required.</p>
+            
+            <div class="signin-options">
+                <button class="btn btn-option" data-method="email">
+                    <span class="icon">📧</span>
+                    Continue with Email
+                </button>
+                <button class="btn btn-option" data-method="wallet">
+                    <span class="icon">🔐</span>
+                    Continue with Wallet
+                </button>
+            </div>
+
+            <div id="email-form" class="form hidden">
+                <input type="email" id="email-input" placeholder="Enter your email">
+                <button id="email-signin-btn" class="btn btn-primary">Sign In</button>
+            </div>
+
+            <div id="wallet-form" class="form hidden">
+                <p class="info">Connect your wallet to continue</p>
+                <button id="wallet-connect-btn" class="btn btn-primary">Connect Wallet</button>
+            </div>
+        </div>
+
+        <div id="download-section" class="section hidden">
+            <h2>Download Ready</h2>
+            <p class="success">✓ Consent accepted</p>
+            <p class="success">✓ Signed in</p>
+            
+            <div class="download-info">
+                <p>Your node is ready to download. The installer will:</p>
+                <ul>
+                    <li>Install all required dependencies</li>
+                    <li>Set up QVAC inference layer</li>
+                    <li>Configure P2P network settings</li>
+                    <li>Initialize miners (disabled by default)</li>
+                    <li>Generate your unique node ID</li>
+                </ul>
+            </div>
+
+            <button id="download-btn" class="btn btn-primary btn-large">
+                <span class="icon">⬇️</span>
+                Download Installer
+            </button>
+
+            <p class="info">After download, run the installer and follow the prompts.</p>
+        </div>
+
+        <div id="loading" class="hidden">
+            <div class="spinner"></div>
+            <p id="loading-text">Processing...</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
